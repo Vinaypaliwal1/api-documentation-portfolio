@@ -79,7 +79,7 @@ HTTP status: `201 Created`
 
   ```json
   {
-    "errorCode": "USR\_400",
+    "errorCode": "USR_400",
     "message": "Email is required"
   }
   ```
@@ -88,7 +88,7 @@ HTTP status: `201 Created`
 
   ```json
   {
-    "errorCode": "USR\_409",
+    "errorCode": "USR_409",
     "message": "User already exists"
   }
   ```

@@ -31,7 +31,7 @@ Use this example to retrieve user details from a terminal.
 
 ```bash
 curl -X GET https://api.example.com/v1/users/u12345 \
- -H "Authorization: Bearer <access\_token>"
+ -H "Authorization: Bearer <access_token>"
 ```
 
 ### Success response 
@@ -64,7 +64,7 @@ HTTP status: `200 OK`
 
    ```json
    {
-    "errorCode": "USR\_404",
+    "errorCode": "USR_404",
     "message": "User not found"
    }
    ```

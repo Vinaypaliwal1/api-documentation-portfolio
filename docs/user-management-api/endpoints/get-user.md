@@ -70,4 +70,4 @@ HTTP status: `200 OK`
    ```
 
 
-
+[Back to User Management API](../README.md)

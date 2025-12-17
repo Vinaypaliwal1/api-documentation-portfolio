@@ -28,29 +28,27 @@ The User Management API enables applications to manage user accounts, including 
 
 ---
 
-\## User Management API
+## User Management API
 
+- [User Management API Home](user-management-api/README.md)
 
+- [Overview](user-management-api/overview.md)
 
-\- \[User Management API Home](user-management-api/README.md)
+- [Quick Start](user-management-api/quick-start.md)
 
-\- \[Overview](user-management-api/overview.md)
+- [Authentication](user-management-api/authentication.md)
 
-\- \[Quick Start](user-management-api/quick-start.md)
+- [Create User](user-management-api/endpoints/create-user.md)
 
-\- \[Authentication](user-management-api/authentication.md)
+- [Get User](user-management-api/endpoints/get-user.md)
 
-\- \[Create User](user-management-api/endpoints/create-user.md)
+- [Update User](user-management-api/endpoints/update-user.md)
 
-\- \[Get User](user-management-api/endpoints/get-user.md)
+- [Delete User](user-management-api/endpoints/delete-user.md)
 
-\- \[Update User](user-management-api/endpoints/update-user.md)
+- [Error Handling](user-management-api/errors.md)
 
-\- \[Delete User](user-management-api/endpoints/delete-user.md)
-
-\- \[Error Handling](user-management-api/errors.md)
-
-\- \[OpenAPI Specification](user-management-api/openapi.yaml)
+- [OpenAPI Specification](user-management-api/openapi.yaml)
 
 
 
@@ -58,7 +56,7 @@ The User Management API enables applications to manage user accounts, including 
 
 
 
-\*\*GitHub Repository\*\*  
+**GitHub Repository**
 
 https://github.com/vinaypaliwal1/api-documentation-portfolio
 

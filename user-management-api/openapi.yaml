@@ -1,0 +1,225 @@
+openapi: 3.0.3
+
+info:
+  title: User Management API
+  description: |
+    The User Management API allows applications to create, retrieve,
+    update, and delete user accounts.
+  version: 1.0.0
+
+servers:
+  - url: https://api.example.com/v1
+    description: Production server
+
+tags:
+  - name: Users
+    description: Operations related to user management
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    CreateUserRequest:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - email
+      properties:
+        firstName:
+          type: string
+          example: Vinay
+        lastName:
+          type: string
+          example: Paliwal
+        email:
+          type: string
+          format: email
+          example: vinay.paliwal@example.com
+
+    UpdateUserRequest:
+      type: object
+      properties:
+        firstName:
+          type: string
+          example: Vinay
+        lastName:
+          type: string
+          example: Paliwal
+
+    UserResponse:
+      type: object
+      properties:
+        userId:
+          type: string
+          example: u12345
+        firstName:
+          type: string
+          example: Vinay
+        lastName:
+          type: string
+          example: Paliwal
+        email:
+          type: string
+          example: vinay.paliwal@example.com
+        status:
+          type: string
+          example: ACTIVE
+        createdAt:
+          type: string
+          format: date-time
+          example: "2025-01-15T10:30:00Z"
+        updatedAt:
+          type: string
+          format: date-time
+          example: "2025-01-16T11:20:00Z"
+
+    ErrorResponse:
+      type: object
+      properties:
+        errorCode:
+          type: string
+          example: USR_404
+        message:
+          type: string
+          example: User not found
+        traceId:
+          type: string
+          example: abc-123
+
+security:
+  - bearerAuth: []
+
+paths:
+  /users:
+    post:
+      tags:
+        - Users
+      summary: Create a user
+      description: Creates a new user account.
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: User already exists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /users/{userId}:
+    get:
+      tags:
+        - Users
+      summary: Get user
+      description: Retrieves user details by user ID.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+          example: u12345
+      responses:
+        '200':
+          description: User retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    put:
+      tags:
+        - Users
+      summary: Update user
+      description: Updates an existing user profile.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRequest'
+      responses:
+        '200':
+          description: User updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserResponse'
+        '400':
+          description: Invalid request payload
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+    delete:
+      tags:
+        - Users
+      summary: Delete user
+      description: Deletes a user account.
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: User deleted successfully
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: User not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '409':
+          description: Conflict
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
